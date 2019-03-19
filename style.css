@@ -1,0 +1,53 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+body .monster {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background-color: #fff;
+}
+body .projectile {
+  position: absolute;
+  height: 8px;
+  width: 8px;
+  background-color: red;
+  border: 1px solid red;
+  border-radius: 50%;
+}
+#board {
+  box-sizing: border-box;
+  width: 530px;
+  height: 530px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: center;
+  flex-wrap: wrap;
+}
+#board .square {
+  margin: 1px;
+  height: 50px;
+  width: 50px;
+  box-sizing: border-box;
+  border: 1px solid #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
