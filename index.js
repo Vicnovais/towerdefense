@@ -5,9 +5,9 @@ var gameController = new GameController();
 gameController.start();
 
 setInterval(() => {
-    //gameController.walkMonsters();
+    gameController.walkMonsters();
 }, 300);
 
 setInterval(() => {
-    //gameController.shootTowers();
+    gameController.shootTowers();
 }, 100);

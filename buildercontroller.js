@@ -11,8 +11,12 @@ class Builder {
         e.preventDefault();
         let dataTransfer = e.originalEvent.dataTransfer,
             towerType = dataTransfer.getData("towerType"),
-            square = $(e.currentTarget);
+            square = $(e.currentTarget),
+            dataX = square.attr("data-x"),
+            dataY = square.attr("data-y");
 
+        this.mapController.map.schema[dataX][dataY] = this.mapController.getTileType(TOWER);
+        this.towerController.addTower({ x: dataX, y: dataY }, towerType);
         square.css("opacity", 1);
         square.css("backgroundColor", towerType);
         square.addClass(TOWER.toLowerCase());

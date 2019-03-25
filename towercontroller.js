@@ -1,11 +1,17 @@
 const MONSTER_HEIGHT = 15;
 const MONSTER_WIDTH = 15;
+const BLUE_TOWER = "blue";
+const RED_TOWER = "red";
+const PURPLE_TOWER = "purple";
+const YELLOW_TOWER = "yellow";
+const GREEN_TOWER = "green";
+const TOWER_POWER = { BLUE_TOWER: 100, RED_TOWER: 300, PURPLE_TOWER: 450, YELLOW_TOWER: 800, GREEN_TOWER: 1500 };
 
 class Projectile {
-    constructor(tower, monster, power) {
+    constructor(tower, monster) {
         this.tower = tower;
         this.monster = monster;
-        this.power = power || 10;
+        this.power = this.tower.getPower();
         this.initialPosition = tower.position;
         this.id = this.generateUUID();
         this.speed = 200;
@@ -34,7 +40,10 @@ class Projectile {
                     y: Math.floor(squareOffset.top) + squareCenterY - Math.ceil(MONSTER_HEIGHT / 2)
                 },
                 element = `<div class="projectile" 
-                                style="top: ${ squareCenterOffset.y }px; left: ${ squareCenterOffset.x }px;"
+                                style="top: ${ squareCenterOffset.y }px; 
+                                       left: ${ squareCenterOffset.x }px;
+                                       background-color: ${ this.tower.type }";
+                                       border: 1px solid ${ this.tower.type };
                                 data-id="${ this.id }">
                             </div>`;
             
@@ -70,8 +79,14 @@ class Projectile {
 }
 
 class Tower {
-    constructor(position) {
+    constructor(position, type) {
         this.position = position;
+        this.type = type;
+    }
+
+    getPower() {
+        if (!this.type) return 100;
+        return TOWER_POWER[this.type] || 100;
     }
 }
 
@@ -89,8 +104,8 @@ class TowerController {
         });
     }
 
-    addTower(position) {
-        this.towers.push(new Tower(position));
+    addTower(position, type) {
+        this.towers.push(new Tower(position, type));
     }
 
     shoot() {
