@@ -1,5 +1,5 @@
 const waves = [
-    { level: 1, monsterQuantity: 10, monsterHp: 300 },
+    { level: 1, monsterQuantity: 5, monsterHp: 300 },
     { level: 2, monsterQuantity: 20, monsterHp: 500 },
     { level: 3, monsterQuantity: 30, monsterHp: 600 }
 ];

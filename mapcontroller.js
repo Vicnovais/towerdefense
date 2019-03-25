@@ -183,9 +183,10 @@ class MapController {
         sizeY = this.map.getSizeY(),
         getElement = (x, y) => {
             let pos = { x, y },
-                tileType = this.getTileTypeByPosition(pos);
+                tileType = this.getTileTypeByPosition(pos),
+                className = `square ${ tileType }`;
 
-            return `<div class="square" 
+            return `<div class="${ className.toLowerCase() }" 
                          style="background-color: ${ this.getTileBackground(tileType) };"
                          data-x="${ x }"
                          data-y="${ y }"

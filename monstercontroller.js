@@ -33,12 +33,13 @@ class Monster {
         let nextPath = this.getNextPath();
         if (!nextPath) return false;
 
-        return this
+        return (nextPath.type === this.mapController.getTileType("END")) ||
+              (this
               .monsterController
               .monsters
               .filter(t => t.currentPosition.x === nextPath.x 
                         && t.currentPosition.y === nextPath.y)
-              .length === 0;
+              .length === 0);
     }
 
     walk() {
