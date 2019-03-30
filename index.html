@@ -8,15 +8,26 @@
     </head>
 
     <body>
+        <div id="info">
+            <div class="score">
+                <span>Score</span>
+                <span>200</span>
+            </div>
+            <div class="gold">
+                <span>Gold</span>
+                <span>500</span>
+            </div>
+        </div>
+
         <div id="board">
         </div>
 
         <div id="tower-shop">
-            <div class="tower-base" draggable="true" data-kind="blue"></div>
-            <div class="tower-base" draggable="true" data-kind="red"></div>
-            <div class="tower-base" draggable="true" data-kind="purple"></div>
-            <div class="tower-base" draggable="true" data-kind="yellow"></div>
-            <div class="tower-base" draggable="true" data-kind="green"></div>
+            <div class="tower-base" draggable="true" data-kind="blue" data-price="100 gold"></div>
+            <div class="tower-base" draggable="true" data-kind="red" data-price="200 gold"></div>
+            <div class="tower-base" draggable="true" data-kind="purple" data-price="300 gold"></div>
+            <div class="tower-base" draggable="true" data-kind="yellow" data-price="400 gold"></div>
+            <div class="tower-base" draggable="true" data-kind="green" data-price="500 gold"></div>
         </div>
 
         <script type="module" src="index.js"></script>
