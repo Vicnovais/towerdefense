@@ -6,6 +6,7 @@ const PURPLE_TOWER = "purple";
 const YELLOW_TOWER = "yellow";
 const GREEN_TOWER = "green";
 const TOWER_POWER = { BLUE_TOWER: 100, RED_TOWER: 300, PURPLE_TOWER: 450, YELLOW_TOWER: 800, GREEN_TOWER: 1500 };
+const TOWER_COST = { BLUE_TOWER: 100, RED_TOWER: 300, PURPLE_TOWER: 450, YELLOW_TOWER: 800, GREEN_TOWER: 1500 };
 
 class Projectile {
     constructor(tower, monster) {
@@ -82,11 +83,18 @@ class Tower {
     constructor(position, type) {
         this.position = position;
         this.type = type;
+        this.power = this.getPower()
+        this.cost = this.getCost();
     }
 
     getPower() {
         if (!this.type) return 100;
         return TOWER_POWER[this.type] || 100;
+    }
+
+    getCost() {
+        if (!this.type) return +Infinity;
+        return TOWER_COST[this.type] || +Infinity;
     }
 }
 
@@ -123,6 +131,11 @@ class TowerController {
 
     clearProjectiles() {
         $(".projectile").remove();
+    }
+
+    getTowerCost(towerType) {
+        if (!towerType) return +Infinity;
+        return TOWER_COST[`${ towerType.toUpperCase() }_TOWER`] || +Infinity;
     }
 }
 

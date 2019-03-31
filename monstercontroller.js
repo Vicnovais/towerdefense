@@ -101,15 +101,17 @@ class Monster {
                 this.visible = false;
                 this.element.remove();
                 this.element = null;
+                this.monsterController.onDie();
             }
         }
     }
 };
 
 class MonsterController {
-    constructor(onFinish) {
+    constructor(gameController, onFinish) {
         this.monsters = [];
         this.onFinish = onFinish;
+        this.gameController = gameController;
     }
 
     addMonster(mapController, hp, speed) {
@@ -123,6 +125,19 @@ class MonsterController {
 
     getMonsters() {
         return this.monsters;
+    }
+
+    onDie() {
+        let currentWave = this.gameController.getCurrentWave();
+
+        if (currentWave) {
+            let waveConfig = currentWave.getWaveConfig();
+
+            if (waveConfig) {
+                this.gameController.updateScore(waveConfig.monsterScore);
+                this.gameController.updateGold(waveConfig.monsterGold);
+            }
+        }
     }
 
     walk() {

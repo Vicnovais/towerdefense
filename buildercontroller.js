@@ -25,13 +25,20 @@ class Builder {
         square.off("dragleave");
     }
 
-    onDragStart(e) {
+    onDragStart(e, currentGold) {
         let dataTransfer = e.originalEvent.dataTransfer,
             target = $(e.currentTarget),
-            towerType = target.attr("data-kind");
-        
-        this.draggedElement = target;
-        dataTransfer.setData("towerType", towerType);
+            towerType = target.attr("data-kind"),
+            towerCost = this.towerController.getTowerCost(towerType);
+
+        if (currentGold < towerCost) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+        else {
+            this.draggedElement = target;
+            dataTransfer.setData("towerType", towerType);
+        }
     }
 
     onDragOver(e) {
@@ -49,6 +56,19 @@ class Builder {
     
         square.css("opacity", 1);
         square.css("backgroundColor", "transparent");
+    }
+
+    onMouseOver(e, currentGold) {
+        let tower = $(e.currentTarget),
+            towerType = tower.attr("data-kind"),
+            towerCost = this.towerController.getTowerCost(towerType);
+
+        if (currentGold < towerCost) {
+            tower.css("cursor", "not-allowed");
+        }
+        else {
+            tower.css("cursor", "pointer");
+        }
     }
 }
 

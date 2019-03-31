@@ -1,7 +1,7 @@
 const waves = [
-    { level: 1, monsterQuantity: 5, monsterHp: 300 },
-    { level: 2, monsterQuantity: 20, monsterHp: 500 },
-    { level: 3, monsterQuantity: 30, monsterHp: 600 }
+    { level: 1, monsterQuantity: 5,  monsterHp: 1000, monsterGold: 35, monsterScore: 10 },
+    { level: 2, monsterQuantity: 20, monsterHp: 2500, monsterGold: 50, monsterScore: 30 },
+    { level: 3, monsterQuantity: 30, monsterHp: 4000, monsterGold: 85, monsterScore: 70 }
 ];
 
 class Wave {
@@ -37,11 +37,13 @@ class WaveController {
         this.currentLevel = 1;
         this.monsterController = monsterController;
         this.mapController = mapController;
+        this.currentWave = null;
     }
 
     send() {
         let wave = new Wave(this.currentLevel, this.monsterController, this.mapController);
         this.currentLevel++;
+        this.currentWave = wave;
         wave.send();
     }
 }

@@ -126,15 +126,15 @@ body .projectile {
   transform: translateX(-50%);
   border: 1px solid #000;
   height: 25px;
-  width: 70px;
+  width: 80px;
   border-radius: 15px;
 }
 #tower-shop .tower-base:hover:before {
   content: attr(data-price);
   display: block;
   position: absolute;
-  left: 50%;
+  left: calc(56%);
   top: -34px;
   transform: translateX(-50%);
-  width: 60px;
+  width: 70px;
 }
